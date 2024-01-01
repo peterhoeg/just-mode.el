@@ -60,6 +60,7 @@
     "extension"
     "file_name"
     "file_stem"
+    "import"
     "invocation_directory"
     "invocation_directory_native"
     "join"
@@ -69,6 +70,7 @@
     "kebabcase"
     "lowercamelcase"
     "lowercase"
+    "mod"
     "os"
     "os_family"
     "parent_directory"
@@ -144,11 +146,11 @@ Argument KEYWORDS the list of keywords"
 Argument N number of untabs to perform"
   (interactive "p")
   (let ((begin (if (use-region-p)
-                 (region-beginning)
+                   (region-beginning)
                  (line-beginning-position)))
         (end (if (use-region-p)
                  (region-end)
-                 (line-end-position))))
+               (line-end-position))))
     (indent-rigidly begin end (* N -4))))
 
 (defcustom just-executable "just"
@@ -163,7 +165,7 @@ Argument N number of untabs to perform"
   (let ((exit-code (call-process just-executable nil nil nil "--unstable" "--fmt")))
     (if (eq exit-code 0)
         (revert-buffer :ignore-auto :noconfirm)
-        (message "Formatted")
+      (message "Formatted")
       (message "Format failed with exit code %s" exit-code))))
 
 ;; from https://www.emacswiki.org/emacs/BackspaceWhitespaceToTabStop
